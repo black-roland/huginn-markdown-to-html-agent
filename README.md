@@ -1,45 +1,77 @@
-# HtmlToMarkdownAgent
+# Huginn Markdown to HTML Agent
 
-Welcome to your new agent gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/huginn_html_to_markdown_agent`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Huginn agent that converts Markdown formatted text to HTML using Kramdown parser.
 
 ## Installation
 
-Add this string to your Huginn's .env `ADDITIONAL_GEMS` configuration:
+Add this string to your Huginn's `.env` `ADDITIONAL_GEMS` configuration:
 
 ```ruby
-huginn_html_to_markdown_agent
-# when only using this agent gem it should look like hits:
-ADDITIONAL_GEMS=huginn_html_to_markdown_agent
+huginn_markdown_to_html_agent(github: black-roland/huginn-markdown-to-html-agent)
 ```
 
-And then execute:
+Then execute:
 
-    $ bundle
+```bash
+bundle
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
+
+1. Add the Markdown to HTML Agent to your Huginn scenario
+2. Set the `source` option to the markdown content you want to convert (supports Liquid templating)
+3. The agent will output events with the HTML content in the `html` field
+
+### Example
+
+Input Markdown:
+```markdown
+# Heading
+
+This is **bold** text
+```
+
+Output HTML:
+```html
+<h1>Heading</h1>
+
+<p>This is <strong>bold</strong> text</p>
+```
 
 ## Development
 
-Running `rake` will clone and set up Huginn in `spec/huginn` to run the specs of the Gem in Huginn as if they would be build-in Agents. The desired Huginn repository and branch can be modified in the `Rakefile`:
+To set up development environment:
 
-```ruby
-HuginnAgent.load_tasks(branch: '<your branch>', remote: 'https://github.com/<github user>/huginn.git')
+```bash
+bundle install
 ```
 
-Make sure to delete the `spec/huginn` directory and re-run `rake` after changing the `remote` to update the Huginn source code.
+Running `rake` will clone and set up Huginn in `spec/huginn` to run the specs.
 
-After the setup is done `rake spec` will only run the tests, without cloning the Huginn source again.
+To modify the Huginn repository and branch used for testing, edit the `Rakefile`:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+HuginnAgent.load_tasks(branch: 'master', remote: 'https://github.com/huginn/huginn.git')
+```
+
+After setup, run tests with:
+
+```bash
+rake spec
+```
+
+To install this gem locally:
+
+```bash
+bundle exec rake install
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/huginn_html_to_markdown_agent/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
+1. Fork the project (https://github.com/black-roland/huginn-markdown-to-html-agent/fork)
+2. Create your feature branch (`git checkout -b feature/your-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
+4. Push to the branch (`git push origin feature/your-feature`)
 5. Create a new Pull Request
