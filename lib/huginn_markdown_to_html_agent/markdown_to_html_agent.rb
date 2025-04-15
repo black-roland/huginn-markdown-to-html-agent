@@ -1,6 +1,8 @@
 module Agents
   class MarkdownToHtmlAgent < Agent
+    default_schedule "never"
     can_dry_run!
+
     description <<-MD
       The Markdown to HTML agent takes input in the form of a markdown string and converts it to HTML.
 
